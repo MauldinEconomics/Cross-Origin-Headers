@@ -1,0 +1,30 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+
+install:
+  - composer install
+
+script:
+  - cross_origin_headers/vendor/bin/parallel-lint --exclude cross_origin_headers/vendor .
+
+before_deploy:
+  - composer install --no-dev
+  - zip -r 'Cross-Origin Headers' cross_origin_headers
+
+deploy:
+  provider: releases
+  api_key:
+    secure: EOjv+D4YETI60ba+VHx2N2nJ5euSUNXb3Lu2rhO8dy2U6hV9T9nSg7O/ujUJBLjR9mPYPgVgjt4dvhfmpYjqU7QBpMaslcQGnIonwBtUSVwiIv/9Gemto/Uqb1hL3Vd/WBGdMzqNOq49Ds0VJeRnq+BdWmGWRind9mSyMIV6HUKRj2H1gNAh37eqdNkHsVeIXd/cHhMtAeXo2iYtuzrHx1m8NuM0CAnZCBfzTKbiu2DDjVXjc56rbZ2/YgcO9KjEh4bk2gq4pv95qsDzoMaiGprQELbSDo/y33IKT1IvgVa9odl4WxFuhyc298HZn05RKAyFrrAW8cOHpQ6NfXVOSGA0KEqeXfJi0x7r4DzDyEs7SgLk3n+oUGk2zb0rbVmr7h9HUS/BDo6SBLD1fPiz5L/u4klHoYmzu6DjkvAsdmSGj6eFcpmU1ciDT30fQj+6/2NxbNn/8JJoYzXgVnCgBzSGlvdYUzigvUU5TiBAN7bDqplbrTJpb3CLEcrR3fdNiJ8sW4aT6vrWPYcJqFjYnT/th5NqNK9z1EW5guojD4ysDdSp2WMzjdVupRbVr9mT3uC/v5uHsbS8SGGQ0RQMNGzJroVebMZ9nVuq8iEFjn7TxvoUDaUmw8ElvmxmJmZ3RlPPvneddcKJqgPgJWnAtgQza/2hfGVDuv1B+wr+PqI=
+  file: "Cross-Origin Headers.zip"
+  skip_cleanup: true
+  on:
+    php: 7.1
+    tags: true
+    condition: $TRAVIS_PULL_REQUEST = false
