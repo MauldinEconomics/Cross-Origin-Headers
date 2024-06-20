@@ -36,10 +36,8 @@ in this Software without prior written authorization from EllisLab, Inc.
  */
 class Cross_origin_headers {
 
-	/*
-	 * @var  string  The plugin return data
-	 */
-	public $return_data;
+    /** @var CI_Controller $EE */
+    private $EE;
 
 	/**
 	 * Constructor
@@ -49,8 +47,14 @@ class Cross_origin_headers {
 	 */
 	public function __construct()
 	{
-		$domain = (ee()->TMPL->fetch_param('domain', '*'));
-		ee()->output->set_header("Access-Control-Allow-Origin: ${domain}");
+        $this->EE = &get_instance();
+		$domain   = $this->EE->TMPL->fetch_param('domain', '*');
+        $domains  = explode('|', $domain);
+
+        foreach ($domains as $domain) {
+            $this->EE->output->set_header("Access-Control-Allow-Origin: ".$domain);
+        }
+        $this->EE->output->set_header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	}
 }
 // END CLASS
