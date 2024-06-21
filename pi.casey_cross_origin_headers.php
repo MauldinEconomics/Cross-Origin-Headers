@@ -34,7 +34,7 @@ in this Software without prior written authorization from EllisLab, Inc.
  * @copyright		Copyright (c) 2016, EllisLab, Inc.
  * @link			https://github.com/EllisLab/Cross-Origin-Headers
  */
-class Cross_origin_headers {
+class Casey_cross_origin_headers {
 
     /** @var CI_Controller $EE */
     private $EE;
