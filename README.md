@@ -14,14 +14,14 @@ Install as a composer package:
 
 ## Usage
 
-### `{exp:cross_origin_headers}`
+### `{exp:casey_cross_origin_headers}`
 
 #### Example Usage
 
 The Cross-Origin Headers plugin is a single tag that you can put anywhere in your template. It might be best to put it near the top, or at least in your template comments so it's clear to anyone reading your template for the first time what's going on.
 
 ```
-{exp:cross_origin_headers}
+{exp:casey_cross_origin_headers}
 ```
 
 #### Parameters
@@ -31,7 +31,7 @@ The Cross-Origin Headers plugin is a single tag that you can put anywhere in you
 A specific domain to allow cross-origin access. The default `*` will allow the request to come from any source, essentially making this a public resource.
 
 ```
-{exp:cross_origin_headers domain='http://example.com|https://example2.com'}
+{exp:casey_cross_origin_headers domain='http://example.com|https://example2.com'}
 ```
 
 Due to a practical restriction in implementation of the [Access-Control-Allow-Origin standard](https://www.w3.org/TR/cors/#access-control-allow-origin-response-header), you can only specify a single origin. Therefore this plugin works when you want a fully public resource, or restricted to a single origin. If you need endpoints to be available from multiple domains, but not be public, then you will need to handle that in your server configuration. See the article [Cross-Origin Resource Sharing](https://expressionengine.com/learn/cross-origin-resource-sharing-cors) for potential options.
